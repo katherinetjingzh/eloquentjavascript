@@ -3,12 +3,13 @@ This is a self study notes for the book Eloquent Javascript, including answers f
 
 <ol>
 <li>Introduction</li>
-<h2>Part 1: Language)Values, Types, and Operators</h2>
-Program Structure
-Functions
-Data Structures: Objects and Arrays
-Higher-order Functions<br /><br />
-The Secret Life of Objects<br />
+<p>Part 1: Language</p>
+<li>Values, Types, and Operators</li>
+<li>Program Structure</li>
+<li>Functions</li>
+<li>Data Structures: Objects and Arrays</li>
+<li>Higher-order Functions</li>
+<li>The Secret Life of Objects</li>
 Project: Electronic Life<br />
 Bugs and Error Handling<br />
 Regular Expressions<br />
