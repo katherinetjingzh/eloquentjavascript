@@ -19,10 +19,11 @@ This is a self study notes for the book Eloquent Javascript, including answers f
 <li>JavaScript and the Browser</li>
 <li>The Document Object Model</li>
 <li>Handling Events</li>
-<li>Project: A Platform Game<br />
-Drawing on Canvas<br />
-HTTP<br />
-Forms and Form Fields<br />
-Project: A Paint Program<br />
-<h2>Part 3: Node)Node.js</h2>
-Project: Skill-Sharing Website<br />
+<li>Project: A Platform Game</li>
+<li>Drawing on Canvas</li>
+<li>HTTP</li>
+<li>Forms and Form Fields</li>
+<li>Project: A Paint Program</li>
+<p>Part 3: Node</p>
+<li>Node.js</li>
+<li>Project: Skill-Sharing Website</li>
