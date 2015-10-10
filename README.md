@@ -1,7 +1,8 @@
 # eloquentjavascript<br />
 This is a self study notes for the book Eloquent Javascript, including answers for all exercises.
 
-<h1>Introduction</h1>
+<ol>
+<li>Introduction</li>
 <h2>Part 1: Language)Values, Types, and Operators</h2>
 Program Structure
 Functions
