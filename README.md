@@ -1,9 +1,9 @@
 # eloquentjavascript
 This is a self study notes for the book Eloquent Javascript, including answers for all exercises.
 
-Introduction
-(Part 1: Language)Values, Types, and Operators
-Program Structure
+Introduction<br />
+(Part 1: Language)Values, Types, and Operators<br />
+Program Structure<br />
 Functions
 Data Structures: Objects and Arrays
 Higher-order Functions
