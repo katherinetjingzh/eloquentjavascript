@@ -17,6 +17,7 @@ function Vector(x, y) {
   this.x = x;
   this.y = y;
 }
+
 Vector.prototype.plus = function(other) {
   return new Vector(this.x + other.x, this.y + other.y);
 };
@@ -36,13 +37,14 @@ Grid.prototype.isInside = function(vector) {
   return vector.x >= 0 && vector.x < this.width &&
          vector.y >= 0 && vector.y < this.height;
 };
+
 Grid.prototype.get = function(vector) {
   return this.space[vector.x + this.width * vector.y];
 };
+
 Grid.prototype.set = function(vector, value) {
   this.space[vector.x + this.width * vector.y] = value;
 };
-
 
 // Directions
 var directions = {
@@ -103,14 +105,6 @@ function charFromElement(element) {
     return element.originChar;
 }
 
-
-function charFromElement(element) {
-  if (element == null)
-    return " ";
-  else
-    return element.originChar;
-}
-
 World.prototype.toString = function() {
   var output = "";
   for (var y = 0; y < this.grid.height; y++) {
@@ -128,10 +122,9 @@ var world = new World(plan, {"#": Wall,
                              "o": BouncingCritter});
 console.log(world.toString());
 
-
 // An approach to fix the this problem.
 // This works only for higher-order functions that support such a context parameter. When they don’t, you’ll
-//  need to use one of the other approaches.
+// need to use one of the other approaches.
 var test = {
       prop : 10,
       addPropTo : function(array) {
