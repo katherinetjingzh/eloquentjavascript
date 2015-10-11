@@ -9,10 +9,10 @@ var fatRabbit = {type: "fat", speak : speak};
 
 whiteRabbit.speak("Oh my earas and whskers, how late it's getting!");
 fatRabbit.speak("I could sure use a carrot right now.");
-// apply adn bind methods both take a first argument that can be used to simulate method calls. 
+// apply and bind methods both take a first argument that can be used to simulate method calls. 
 // The first argument is in fact used to give a value to this.
-// call can be passed a specific this value. takes its arguments normailly, ranther than an array.
 speak.apply(fatRabbit, ["Burp!"]);
+// call can be passed a specific this value. takes its arguments normally, ranther than an array.
 speak.call({type: "old"}, "Oh my.");
 
 var empty = {};
@@ -21,6 +21,10 @@ console.log(empty.toString);
 console.log(empty.toString());
 //[object Object]
 
+// In addition to their set of properties, almost all objects also have a prototype.
+// A prototype is another object that is used as a fallback source of properties.
+// When an object gets a request for a property that it does not have, its prototype will be searched for the property,
+// then the prototype’s prototype, and so on.
 console.log(Object.getPrototypeOf({}) == Object.prototype);
 console.log(Object.getPrototypeOf(Object.prototype));
 
