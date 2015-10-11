@@ -148,6 +148,7 @@ var test = {
 };
 console.log(test.addPropTo([5]));
 
+// Apply function f on each element in grid in context.
 Grid.prototype.forEach = function(f, context) {
   for (var y = 0; y < this.height; y++) {
     for (var x = 0; x < this.width; x++) {
@@ -167,7 +168,6 @@ World.prototype.turn = function() {
     }
   }, this);
 };
-
 
 World.prototype.letAct = function(critter, vector) {
   var action = critter.act(new View(this, vector));
@@ -192,6 +192,7 @@ function View(world, vector) {
   this.world = world;
   this.vector = vector;
 }
+
 View.prototype.look = function(dir) {
   var target = this.vector.plus(directions[dir]);
   if (this.world.grid.isInside(target))
@@ -199,6 +200,7 @@ View.prototype.look = function(dir) {
   else
     return "#";
 };
+
 View.prototype.findAll = function(ch) {
   var found = [];
   for (var dir in directions)
@@ -219,6 +221,8 @@ for (var i = 0; i < 5; i++) {
   console.log(world.toString());
 }
 
+// Later use AnimatedWorld to make the world dynamic on one map instead of successive maps.
+
 function dirPlus(dir, n) {
   var index = directionNames.indexOf(dir);
   return directionNames[(index + n + 8) % 8];
@@ -238,7 +242,6 @@ WallFollower.prototype.act = function(view) {
   }
   return {type: "move", direction: this.dir};
 };
-
 
 function LifelikeWorld(map, legend) {
   World.call(this, map, legend);
@@ -291,8 +294,7 @@ actionTypes.eat = function(critter, vector, action) {
 };
 
 actionTypes.reproduce = function(critter, vector, action) {
-  var baby = elementFromChar(this.legend,
-                             critter.originChar);
+  var baby = elementFromChar(this.legend, critter.originChar);
   var dest = this.checkDestination(action, vector);
   if (dest == null ||
       critter.energy <= 2 * baby.energy ||
@@ -477,4 +479,3 @@ Tiger.prototype.act = function(view) {
 //    "O": SmartPlantEater, // from previous exercise
 //    "*": Plant}
 // ));
-
