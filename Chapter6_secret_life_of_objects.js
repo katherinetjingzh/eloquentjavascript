@@ -64,12 +64,10 @@ console.log(blackRabbit.type);
 blackRabbit.speak("Doom...");
 // This is wrong : Rabbit.speak("Hi");
 
-
 // Note: difference between the way a prototype is associated with a constructor (through its prototype property)
 // and the way objects have a prototype(can be retrieved with Object.getPrototypeOf). The actual prototype of a 
 // a constructor is Function.prototype since constructors are functions. Its prototype property will be the prototype of 
 // instances created through it but is not its own prototype.
-
 
 // Overriding
 // Add a property to an object, whether it is present in the prototype of not, the property is added to the object itself.
@@ -109,9 +107,10 @@ console.log("toString" in map);
 
 // Delete the problematic property again.
 delete Object.prototype.nonsense;
+
 // why nonsense shows up in the loop but not toString? js distinguished between enumerable and noneumerable.
-// All properties that we reate by simply assigning to them are enumerable. The standard properties in Object.prototype are all
-// nonenumerable.
+// All properties that we create by simply assigning to them are enumerable.
+// The standard properties in Object.prototype are all nonenumerable.
 Object.defineProperty(Object.prototype, "hiddenNonsense", {enumerable : false, value : "hi"});
 
 for (var name in map) {
@@ -120,13 +119,11 @@ for (var name in map) {
 console.log(map.hiddenNonsense);
 console.log(map.hasOwnProperty("toString"));
 
-
 // Create a fresh object from null to fix the problem of safety use of for /in loops.
 var map = Object.create(null);
 map["pizza"] = 0.069;
 console.log("toString" in map);
 console.log("pizza" in map);
-
 
 //test data
 var MOUNTAINS = [
@@ -190,7 +187,7 @@ function drawTable(rows) {
       return drawLine(blocks, lineNo);
     }).join("\n");
   }
-
+  
   return rows.map(drawRow).join("\n");
 }
 
@@ -281,7 +278,6 @@ console.log(cell.heightProp);
 cell.heightProp = 100;
 console.log(cell.heightProp);
 // → 2
-
 
 // Inheritance:
 function RTextCell(text) {
