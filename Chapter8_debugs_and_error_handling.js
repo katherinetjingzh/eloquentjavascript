@@ -161,6 +161,7 @@ function reliableMultiply(a, b) {
 console.log(reliableMultiply(8, 8));
 // → 64
 
+// Exercise 2: Locked box (simulation of lock).
 var box = {
   locked: true,
   unlock: function() { this.locked = false; },
