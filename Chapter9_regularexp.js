@@ -5,7 +5,7 @@
 var re1 = new RegExp("abc");
 var re2 = /abc/;
 
-// Backslashes that arenot part of special character codes will be preserved.
+// Backslashes that are not part of special character codes will be preserved.
 // var blackSlash = /\/; // wrong
 var blackSlash = /\\/;
 console.log(blackSlash); 
