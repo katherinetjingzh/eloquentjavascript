@@ -157,7 +157,7 @@ console.log("Borobudur".replace(/[ou]/g, "a"));
 
 // $1 and $2 in the replacement string refer to the parenthesized groups
 // in the pattern.$1 is replaced by the text that matched against the first
-// group, $ by the second, and so on, up to $9. Whole match can be referred to
+// group, $2 by the second, and so on, up to $9. Whole match can be referred to
 // with $&.
 console.log(
   "Hopper, Grace\nMcCarthy, John\nRitchie, Dennis"
