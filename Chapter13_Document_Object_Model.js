@@ -218,10 +218,207 @@ function id(x) { var i = 1; return x; }
 // right properties, indicating the pixel positions of the sides of the element
 // relative to the top left of the screen.
 
+// JavaScript code can directly manipulate the style of an element through the
+// node's style property. This property holds an object that has properties for
+// all possible style properties. The values of these properties are strings, 
+// which we can write to in order to change a particular aspect of the element's
+// style.
+<p id="para" style="color: purple">
+  Pretty text
+</p>
+
+<script>
+  var para = document.getElementById("para");
+  console.log(para.style.color);
+  para.style.color = "magenta";
+</script>
+
+// cascading in the name refers to the fact that multiple such rules are combined
+// to produce the final style for an element. When multiple rules define a value
+// for the same property, the most recently read rule gets a higher precedence
+// and wins. 
+// Styles in a style attribute applied directly to the node have the highest 
+// precedence and always win.
+// .abc applies to all elements with "abc" in their class attributes. 
+// A rule for #xyz applis to the element with an id attribute of "xyz".
+.subtle {
+  color: gray;
+  font-size: 80%;
+}
+#header {
+  background: blue;
+  color: white;
+}
+/* p elements, with classes a and b, and id main */
+p.a.b#main {
+  margin-bottom: 20px;
+}
+
+// The precedence rule favouring the most recently defined rule holds true only
+// when the rules have the same specificity. A rule's specificity is a measure of
+// how preciesely it describes matching elements.
+// For example, a rule that targets p.a is more specific than rules that target 
+// p or just .a, and thus would take precedence over them.
+
+// The notation p > a {...} applies the given styles to all <a> tags that are 
+// direct children of  p.
+
+// p a {...} applies to all <a> tags inside <p> tags, whether they are direct
+// or indirect children.
+
+// Query selectors.
+<p>And if you go chasing
+  <span class="animal">rabbits</span></p>
+<p>And you know you're going to fall</p>
+<p>Tell 'em a <span class="character">hookah smoking
+  <span class="animal">caterpillar</span></span></p>
+<p>Has given you the call</p>
+
+<script>
+  function count(selector) {
+    return document.querySelectorAll(selector).length;
+  }
+  console.log(count("p"));           // All <p> elements
+  // → 4
+  console.log(count(".animal"));     // Class animal
+  // → 2
+  console.log(count("p .animal"));   // Animal inside of <p>
+  // → 2
+  console.log(count("p > .animal")); // Direct child of <p>
+  // → 1
+</script>
+
+// Unlike methods such as getElementsByTagName, the object returned by 
+// querySelectorAll is not live. It won't change when you change the document.
 
 
+// Positioning and animating
+// The position style property influences layout in a powerful way.
+// 1. static(default):the element sits in its normal place in the document.
+// 2. relative : the element still takes up spcae in the document, but now the 
+// top and left style proerties can be used to move it relative to its normal
+// place. 
+// 3. absolute : the element is removed from the normal document flow(possible 
+// overlap with other elements). its top and left properties can be used to
+// absolutely position it relative to the top-left corner of the nearest enclosing 
+// element whose position property is not static, or relative to the document
+// if no such enclosing element exists.
+<p style="text-align: center">
+  <img src="img/cat.png" style="position: relative">
+</p>
+<script>
+  var cat = document.querySelector("img");
+  var angle = 0, lastTime = null;
+  function animate(time) {
+    if (lastTime != null)
+      angle += (time - lastTime) * 0.001;
+    lastTime = time;
+    cat.style.top = (Math.sin(angle) * 20) + "px";
+    cat.style.left = (Math.cos(angle) * 200) + "px";
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+</script>
 
+// Browsers do not update their display while a JavaScript program is running,
+// nor do they allow any interaction with the page.
 
+// Exercises
+// Exercise 1: Build a table.
 
+var MOUNTAINS = [
+  {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+  {name: "Everest", height: 8848, country: "Nepal"},
+  {name: "Mount Fuji", height: 3776, country: "Japan"},
+  {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+  {name: "Vaalserberg", height: 323, country: "Netherlands"},
+  {name: "Denali", height: 6168, country: "United States"},
+  {name: "Popocatepetl", height: 5465, country: "Mexico"}
+];
 
+if (typeof module != "undefined" && module.exports)
+  module.exports = MOUNTAINS;
+<style>
+  /* Defines a cleaner look for tables */
+  table  { border-collapse: collapse; }
+  td, th { border: 1px solid black; padding: 3px 8px; }
+  th     { text-align: left; }
+</style>
 
+<table>
+  <tr>
+    <th>name</th>
+    <th>height</th>
+    <th>country</th>
+  </tr>
+  <tr>
+    <td>Kilimanjaro</td>
+    <td>5895</td>
+    <td>Tanzania</td>
+  </tr>
+</table>
+
+<script>
+  function buildTable(data) {
+    var table = document.createElement("table");
+  
+    var fields = Object.keys(data[0]);
+    var headRow = document.createElement("tr");
+    fields.forEach(function(field) {
+      var headCell = document.createElement("th");
+      headCell.textContent = field;
+      headRow.appendChild(headCell);
+    });
+    table.appendChild(headRow);
+
+    data.forEach(function(object) {
+      var row = document.createElement("tr");
+      fields.forEach(function(field) {
+        var cell = document.createElement("td");
+        cell.textContent = object[field];
+        if (typeof object[field] == "number")
+          cell.style.textAlign = "right";
+        row.appendChild(cell);
+      });
+      table.appendChild(row);
+    });
+
+    return table;
+  }
+
+  document.body.appendChild(buildTable(MOUNTAINS));
+</script>
+
+// Exercise 2: Implement getElementsByTagName.
+<!doctype html>
+<script src="code/mountains.js"></script>
+<script src="code/chapter/13_dom.js"></script>
+
+<body style="min-height: 200px">
+
+<img src="img/cat.png" id="cat" style="position: absolute">
+<img src="img/hat.png" id="hat" style="position: absolute">
+
+<script>
+  var cat = document.querySelector("#cat");
+  var hat = document.querySelector("#hat");
+
+  var angle = 0, lastTime = null;
+  function animate(time) {
+    if (lastTime != null)
+      angle += (time - lastTime) * 0.0015;
+    lastTime = time;
+
+    cat.style.top = (Math.sin(angle) * 50 + 80) + "px";
+    cat.style.left = (Math.cos(angle) * 200 + 230) + "px";
+    // By adding π to the angle, the hat ends up half a circle ahead of the cat
+    var hatAngle = angle + Math.PI;
+    hat.style.top = (Math.sin(hatAngle) * 50 + 80) + "px";
+    hat.style.left = (Math.cos(hatAngle) * 200 + 230) + "px";
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+</script>
+
+</body>
